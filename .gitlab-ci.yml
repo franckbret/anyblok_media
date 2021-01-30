@@ -1,0 +1,22 @@
+before_script:
+  - python3.6 -m venv venv
+  - source venv/bin/activate
+  - rm -fr build/
+  - rm -fr dist/
+  - rm -fr .eggs/
+  - find . -name '*.egg-info' -exec rm -fr {} +
+  - find . -name '*.egg' -exec rm -f {} +
+  - find . -name '*.pyc' -exec rm -f {} +
+  - find . -name '*.pyo' -exec rm -f {} +
+  - find . -name '*~' -exec rm -f {} +
+  - find . -name '__pycache__' -exec rm -fr {} +
+  - pip install setuptools==v37.0.0
+  - pip install --upgrade pip wheel
+  - pip install -r requirements.test.txt
+  - dropdb anyblok_media_test || true
+  - anyblok_createdb -c tests.cfg
+
+test_script:
+  script:
+    - flake8 anyblok_media --max-line-length=80
+    - anyblok_nose -c tests.cfg -- -v -s anyblok_media

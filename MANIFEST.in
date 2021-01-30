@@ -1,0 +1,3 @@
+include *.rst
+include doc/source/*.rst
+recursive-include anyblok_media/bloks/*/*.rst

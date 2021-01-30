@@ -1,0 +1,42 @@
+language: python
+dist: xenial
+sudo: false
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+  - "3.9-dev"
+  - "nightly"
+
+matrix:
+  allow_failures:
+    - python: "3.9-dev"
+    - python: "nightly"
+
+virtualenv:
+  system_site_packages: false
+
+services:
+  - postgresql
+
+install:
+  - pip install -U pip
+  - pip install wheel
+  - pip install -r requirements.test.txt
+  - pip install coveralls
+  - pip install .
+
+env:
+  global:
+    - ANYBLOK_DATABASE_NAME=travis_ci_test
+    - ANYBLOK_DATABASE_DRIVER=postgresql
+    - ANYBLOK_DATABASE_USER=postgres
+
+script:
+  - flake8 anyblok_media --ignore F999
+  - anyblok_createdb --install-all-bloks
+  - pytest --cov-report= --cov=anyblok_media anyblok_media/bloks
+
+after_success:
+  coveralls --data_file=.coverage --config_file=.coveragerc
