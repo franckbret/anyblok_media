@@ -76,85 +76,85 @@ In your project model file, add a class that inherit from Media.Image, Media.Aud
 
 mymodels.py
 
-```
-from anyblok import Declarations
+.. code:: python
 
-
-register = Declarations.register
-Model = Declarations.Model
-
-
-@register(Model.Media)
-class Image:
-    SOURCE_STORAGE_STRATEGY = "disk"
-    SOURCE_DISK_STORAGE_PATTERN = "{source_path_prefix}/image/{year}/{month}/{day}/{filename}.{extension}"
-    DESTINATION_PATH_PATTERN = "{media_path_prefix}/image/{year}/{month}/{day}/{filename}-{name}.{extension}"
-    URL_PATTERN = (
-        "/media/image/{year}/{month}/{day}/{filename}-{name}.{extension}"
-    )
-    PROCESS_PARAMS = {
-        "wide": {
-            "size": "1200x800",
-            "width": 1200,
-            "height": 800,
-            "extension": "jpg",
-            "file_format": "JPEG",
-            "transformation_mode": "resize",
-        },
-        "large": {
-            "size": "600x400",
-            "width": 600,
-            "height": 400,
-            "extension": "jpg",
-            "file_format": "JPEG",
-            "transformation_mode": "resize",
-        },
-        "medium": {
-            "size": "300x200",
-            "width": 300,
-            "height": 200,
-            "extension": "jpg",
-            "file_format": "JPEG",
-            "transformation_mode": "resize",
-        },
-        "square-small": {
-            "size": "160x160",
-            "width": 160,
-            "height": 160,
-            "extension": "jpg",
-            "file_format": "JPEG",
-            "transformation_mode": "crop",
-        },
-        "small": {
-            "size": "160x120",
-            "width": 160,
-            "height": 120,
-            "extension": "jpg",
-            "file_format": "JPEG",
-            "transformation_mode": "preserve",
-        },
-    }
-
-
-@register(Model.Media)
-class Audio:
-    SOURCE_STORAGE_STRATEGY = "disk"
-    SOURCE_DISK_STORAGE_PATTERN = "{source_path_prefix}/audio/{year}/{month}/{day}/{filename}.{extension}"
-    DESTINATION_PATH_PATTERN = (
-        "{media_path_prefix}/audio/{filename}-{name}.{extension}"
-    )
-    URL_PATTERN = "/media/audio/{filename}-{name}.{extension}"
-
-
-@register(Model.Media)
-class Video:
-    SOURCE_STORAGE_STRATEGY = "disk"
-    SOURCE_DISK_STORAGE_PATTERN = "{source_path_prefix}/video/{year}/{month}/{day}/{filename}.{extension}"
-    DESTINATION_PATH_PATTERN = (
-        "{media_path_prefix}/video/{filename}-{name}.{extension}"
-    )
-    URL_PATTERN = "/media/video/{filename}-{name}.{extension}"
-```
+  from anyblok import Declarations
+  
+  
+  register = Declarations.register
+  Model = Declarations.Model
+  
+  
+  @register(Model.Media)
+  class Image:
+      SOURCE_STORAGE_STRATEGY = "disk"
+      SOURCE_DISK_STORAGE_PATTERN = "{source_path_prefix}/image/{year}/{month}/{day}/{filename}.{extension}"
+      DESTINATION_PATH_PATTERN = "{media_path_prefix}/image/{year}/{month}/{day}/{filename}-{name}.{extension}"
+      URL_PATTERN = (
+          "/media/image/{year}/{month}/{day}/{filename}-{name}.{extension}"
+      )
+      PROCESS_PARAMS = {
+          "wide": {
+              "size": "1200x800",
+              "width": 1200,
+              "height": 800,
+              "extension": "jpg",
+              "file_format": "JPEG",
+              "transformation_mode": "resize",
+          },
+          "large": {
+              "size": "600x400",
+              "width": 600,
+              "height": 400,
+              "extension": "jpg",
+              "file_format": "JPEG",
+              "transformation_mode": "resize",
+          },
+          "medium": {
+              "size": "300x200",
+              "width": 300,
+              "height": 200,
+              "extension": "jpg",
+              "file_format": "JPEG",
+              "transformation_mode": "resize",
+          },
+          "square-small": {
+              "size": "160x160",
+              "width": 160,
+              "height": 160,
+              "extension": "jpg",
+              "file_format": "JPEG",
+              "transformation_mode": "crop",
+          },
+          "small": {
+              "size": "160x120",
+              "width": 160,
+              "height": 120,
+              "extension": "jpg",
+              "file_format": "JPEG",
+              "transformation_mode": "preserve",
+          },
+      }
+  
+  
+  @register(Model.Media)
+  class Audio:
+      SOURCE_STORAGE_STRATEGY = "disk"
+      SOURCE_DISK_STORAGE_PATTERN = "{source_path_prefix}/audio/{year}/{month}/{day}/{filename}.{extension}"
+      DESTINATION_PATH_PATTERN = (
+          "{media_path_prefix}/audio/{filename}-{name}.{extension}"
+      )
+      URL_PATTERN = "/media/audio/{filename}-{name}.{extension}"
+  
+  
+  @register(Model.Media)
+  class Video:
+      SOURCE_STORAGE_STRATEGY = "disk"
+      SOURCE_DISK_STORAGE_PATTERN = "{source_path_prefix}/video/{year}/{month}/{day}/{filename}.{extension}"
+      DESTINATION_PATH_PATTERN = (
+          "{media_path_prefix}/video/{filename}-{name}.{extension}"
+      )
+      URL_PATTERN = "/media/video/{filename}-{name}.{extension}"
 
 Author
 ------
